@@ -1,6 +1,6 @@
 package edu.towson.cis.cosc442.project1.monopoly.gui;
 
-import edu.towson.cis.cosc442.project1.monopoly.Cell;
+import edu.towson.cis.cosc442.project1.monopoly.IOwnable;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -11,7 +11,7 @@ public class CCCellInfoFormatter implements CellInfoFormatter {
     /* (non-Javadoc)
      * @see edu.towson.cis.cosc442.project1.monopoly.gui.CellInfoFormatter#format(edu.towson.cis.cosc442.project1.monopoly.Cell)
      */
-    public String format(Cell cell) {
+    public String format(IOwnable cell) {
         return "<html><font color='white'><b>" + cell.getName() + "</b></font></html>";
     }
 }

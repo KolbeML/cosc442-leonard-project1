@@ -18,7 +18,7 @@ public class GUICell extends JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	/** The cell. */
-	private Cell cell;
+	private IOwnable cell;
 	
 	/** The lbl info. */
 	private JLabel lblInfo;
@@ -31,7 +31,7 @@ public class GUICell extends JPanel {
      *
      * @param cell the cell
      */
-    public GUICell(Cell cell) {
+    public GUICell(IOwnable cell) {
         this.cell = cell;
         setLayout(new OverlayLayout(this));
         setBorder(new BevelBorder(BevelBorder.LOWERED));
@@ -95,7 +95,7 @@ public class GUICell extends JPanel {
 	 *
 	 * @return the cell
 	 */
-	public Cell getCell() {
+	public IOwnable getCell() {
 		return cell;
 	}
 	

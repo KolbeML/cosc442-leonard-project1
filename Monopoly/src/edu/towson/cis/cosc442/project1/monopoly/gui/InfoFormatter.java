@@ -48,7 +48,7 @@ public class InfoFormatter {
      * @param cell the cell
      * @return the string
      */
-    public static String cellInfo(Cell cell) {
+    public static String cellInfo(IOwnable cell) {
         CellInfoFormatter formatter =
                 (CellInfoFormatter) cellInfoFormatters.get(cell.getClass());
         return formatter.format(cell);

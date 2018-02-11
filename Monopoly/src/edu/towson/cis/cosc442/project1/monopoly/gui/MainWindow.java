@@ -79,7 +79,7 @@ public class MainWindow extends JFrame implements MonopolyGUI{
 	 */
 	private void addCells(JPanel panel, List<?> cells) {
 		for(int x=0; x<cells.size(); x++) {
-			GUICell cell = new GUICell((Cell)cells.get(x));
+			GUICell cell = new GUICell((IOwnable)cells.get(x));
 			panel.add(cell);
 			guiCells.add(cell);
 		}
@@ -203,7 +203,7 @@ public class MainWindow extends JFrame implements MonopolyGUI{
 	 * @return the GUI cell
 	 */
 	private GUICell queryCell(int index) {
-		Cell cell = GameMaster.instance().getGameBoard().getCell(index);
+		IOwnable cell = GameMaster.instance().getGameBoard().getCell(index);
 		for(int x = 0; x < guiCells.size(); x++) {
 			GUICell guiCell = (GUICell)guiCells.get(x);
 			if(guiCell.getCell() == cell) return guiCell;
