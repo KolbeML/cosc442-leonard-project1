@@ -15,14 +15,16 @@ import edu.towson.cis.cosc442.project1.monopoly.*;
  */
 public class GUITradeDialog extends JDialog implements TradeDialog {
     
-    /** The Constant serialVersionUID. */
+    private GUITradeDialogProduct gUITradeDialogProduct = new GUITradeDialogProduct();
+
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 	
 	/** The btn cancel. */
-	private JButton btnOK, btnCancel;
+	private JButton btnCancel;
     
     /** The cbo properties. */
-    private JComboBox<Object> cboSellers, cboProperties;
+    private JComboBox<Object> cboSellers;
 
     /** The deal. */
     private TradeDeal deal;
@@ -40,12 +42,12 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         
         setTitle("Trade Property");
         cboSellers = new JComboBox<Object>();
-        cboProperties = new JComboBox<Object>();
+        gUITradeDialogProduct.setCboProperties(new JComboBox<Object>());
         txtAmount = new JTextField();
-        btnOK = new JButton("OK");
+        gUITradeDialogProduct.setBtnOK(new JButton("OK"));
         btnCancel = new JButton("Cancel");
         
-        btnOK.setEnabled(false);
+        gUITradeDialogProduct.getBtnOK().setEnabled(false);
         
         buildSellersCombo();
         setModal(true);
@@ -55,10 +57,10 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         contentPane.add(new JLabel("Sellers"));
         contentPane.add(cboSellers);
         contentPane.add(new JLabel("Properties"));
-        contentPane.add(cboProperties);
+        contentPane.add(gUITradeDialogProduct.getCboProperties());
         contentPane.add(new JLabel("Amount"));
         contentPane.add(txtAmount);
-        contentPane.add(btnOK);
+        contentPane.add(gUITradeDialogProduct.getBtnOK());
         contentPane.add(btnCancel);
         
         btnCancel.addActionListener(new ActionListener(){
@@ -71,11 +73,11 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
         cboSellers.addItemListener(new ItemListener(){
             public void itemStateChanged(ItemEvent e) {
                 Player player = (Player)e.getItem();
-                updatePropertiesCombo(player);
+                gUITradeDialogProduct.updatePropertiesCombo(player);
             }
         });
         
-        btnOK.addActionListener(new ActionListener() {
+        gUITradeDialogProduct.getBtnOK().addActionListener(new ActionListener() {
             @SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
                 int amount = 0;
@@ -86,7 +88,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
                             "Amount should be an integer", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                IOwnable cell = (IOwnable)cboProperties.getSelectedItem();
+                IOwnable cell = (IOwnable)gUITradeDialogProduct.getCboProperties().getSelectedItem();
                 if(cell == null) return;
                 Player player = (Player)cboSellers.getSelectedItem();
                 Player currentPlayer = GameMaster.instance().getCurrentPlayer();
@@ -113,7 +115,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
             cboSellers.addItem(player);
         }
         if(sellers.size() > 0) {
-            updatePropertiesCombo((Player)sellers.get(0));
+            gUITradeDialogProduct.updatePropertiesCombo((Player)sellers.get(0));
         }
     }
 
@@ -122,20 +124,6 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
      */
     public TradeDeal getTradeDeal() {
         return deal;
-    }
-
-    /**
-     * Update properties combo.
-     *
-     * @param player the player
-     */
-    private void updatePropertiesCombo(Player player) {
-        cboProperties.removeAllItems();
-        IOwnable[] cells = player.getAllProperties();
-        btnOK.setEnabled(cells.length > 0);
-        for (int i = 0; i < cells.length; i++) {
-            cboProperties.addItem(cells[i]);
-        }
     }
 
 }
