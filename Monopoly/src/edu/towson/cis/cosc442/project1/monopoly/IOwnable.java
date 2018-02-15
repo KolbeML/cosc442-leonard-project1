@@ -1,5 +1,9 @@
 package edu.towson.cis.cosc442.project1.monopoly;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface IOwnable.
+ */
 public interface IOwnable {
 
 	/**
@@ -10,9 +14,9 @@ public interface IOwnable {
 	String getName();
 
 	/**
-	 * Gets the theOwner.
+	 * Gets theOwner.
 	 *
-	 * @return the theOwner
+	 * @return theOwner
 	 */
 	Player getTheOwner();
 
@@ -26,10 +30,15 @@ public interface IOwnable {
 	/**
 	 * Sets the theOwner.
 	 *
-	 * @param theOwner the new theOwner
+	 * @param owner the new the owner
 	 */
 	void setTheOwner(Player owner);
 
+	/**
+	 * To string.
+	 *
+	 * @return the string
+	 */
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -49,6 +58,13 @@ public interface IOwnable {
 	 */
 	void setAvailable(boolean available);
 
+	/**
+	 * Player moved.
+	 *
+	 * @param player the player
+	 * @param playerIndex the player index
+	 * @param gameMaster the game master
+	 */
 	public abstract void playerMoved(Player player, int playerIndex, GameMaster gameMaster);
 
 }

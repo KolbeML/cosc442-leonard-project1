@@ -90,6 +90,9 @@ public abstract class Cell implements IOwnable {
 		this.available = available;
 	}
 
+	/* (non-Javadoc)
+	 * @see edu.towson.cis.cosc442.project1.monopoly.IOwnable#playerMoved(edu.towson.cis.cosc442.project1.monopoly.Player, int, edu.towson.cis.cosc442.project1.monopoly.GameMaster)
+	 */
 	public void playerMoved(Player player, int playerIndex, GameMaster gameMaster) {
 		if (this.isAvailable()) {
 			int price = this.getPrice();
